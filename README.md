@@ -11,14 +11,16 @@ sudo apt install vim python3 python3-dev build-essential git wget tmux npm cmake
 
 Then once we are settled, clone this repo.
 ```bash
-git clone https://gitlab.com/mewais/everyrc
+git clone https://gitlab.com/mewais/everyrc .
+git submodule init
+git submodule update
 ```
 
 ## VIM
 Run the following to completely setup vim
 ```bash
 vim +PluginInstall +qall
-python3 install.py --clang-completer
+cd ~/.vim/bundle/YouCompleteMe && python3 install.py --clang-completer && cd -
 ```
 
 ## VTOP
