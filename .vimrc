@@ -17,6 +17,9 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
+" Class explorer (tags)
+Plugin 'majutsushi/tagbar'
+
 " Auto completion
 Plugin 'Valloric/YouCompleteMe'
 
@@ -42,11 +45,18 @@ filetype plugin indent on
 set exrc
 set secure
 
+" Syntax
+syntax on
+
 " Line numbers
 set nu
 
 " Mouse support
 set mouse=a
+
+" Highlight search
+set hlsearch
+set incsearch
 
 " Tabs
 set tabstop=4
@@ -71,5 +81,27 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+"YCM
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+
+" Open Tagbar
+autocmd VimEnter * TagbarToggle
+
 " Color
-colorscheme dank-neon
+colorscheme snazzy
+if (has("termguicolors"))
+    set termguicolors
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""   EXTRA SYNTAX  """"""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Enable LLVM IR and TD
+augroup filetype
+    au! BufRead,BufNewFile *.ll     set filetype=llvm
+augroup END
+
+augroup filetype
+    au! BufRead,BufNewFile *.td     set filetype=tablegen
+augroup END
