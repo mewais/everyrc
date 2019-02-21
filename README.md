@@ -6,7 +6,8 @@ On a fresh Linux installation, run the following:
 ```bash
 sudo apt update
 sudo apt upgrade
-sudo apt install vim python3 python3-dev build-essential git wget tmux npm cmake
+sudo apt install vim python3 python3-dev build-essential git wget tmux npm cmake exuberant-ctags fonts-powerline python-pip
+sudo pip install powerline-shell
 ```
 
 Then once we are settled, clone this repo.

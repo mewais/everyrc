@@ -1,0 +1,9 @@
+{
+  "segments": [
+    "username", 
+    "hostname",
+	"cwd",
+	"git",
+	"exit_code"	
+  ]
+}
