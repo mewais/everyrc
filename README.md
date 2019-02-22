@@ -6,7 +6,7 @@ On a fresh Linux installation, run the following:
 ```bash
 sudo apt update
 sudo apt upgrade
-sudo apt install vim python3 python3-dev build-essential git wget tmux npm cmake exuberant-ctags fonts-powerline python-pip powerline
+sudo apt install neovim python3 python3-dev build-essential git wget tmux npm cmake exuberant-ctags fonts-powerline python-pip powerline
 ```
 
 Then once we are settled, clone this repo.
