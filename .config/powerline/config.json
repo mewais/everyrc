@@ -2,6 +2,10 @@
 	"ext": {
 		"shell": {
 			"theme": "modified_left"
+		},
+		"tmux": {
+			"colorscheme": "default",
+			"theme": "modified"
 		}
 	}
 }

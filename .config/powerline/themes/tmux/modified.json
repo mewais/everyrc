@@ -1,0 +1,37 @@
+{
+	"segments": {
+		"right": [
+			{
+				"function": "all_load.cpu_load_percent"
+			},
+			{
+				"function": "all_load.mem_load_percent"
+			},
+			{
+				"function": "powerline.segments.common.net.network_load"
+			},
+			{
+				"function": "powerline.segments.common.bat.battery",
+				"args": {
+					"gamify": true
+				}
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "date",
+				"args": {
+					"format": "%A %Y-%B-%d",
+					"istime": false
+				}
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+				"args": {
+					"format": "%I:%M:%S %p",
+					"istime": true
+				}
+			}
+		]
+	}
+}

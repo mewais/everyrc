@@ -5,10 +5,10 @@ set nocompatible
 filetype off
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.config/nvim/bundle/Vundle.vim
 
 " Start vundle
-call vundle#begin()
+call vundle#begin('~/.config/nvim/bundle')
 
 " let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
@@ -82,7 +82,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 "YCM
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
 
 " Open Tagbar
 autocmd VimEnter * TagbarToggle
@@ -92,6 +92,11 @@ colorscheme snazzy
 if (has("termguicolors"))
     set termguicolors
 endif
+
+" Powerline
+set rtp+=/usr/lib/python3/dist-packages/powerline/bindings/vim/
+set laststatus=2
+set t_Co=256
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""   EXTRA SYNTAX  """"""""""""""""""""""""""""""""""""
