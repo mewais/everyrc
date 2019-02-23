@@ -34,6 +34,10 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'godlygeek/tabular'
 Plugin 'gabrielelana/vim-markdown'
 
+" Airline
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
 " end Vundle
 call vundle#end()
 filetype plugin indent on
@@ -93,10 +97,9 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-" Powerline
-set rtp+=/usr/lib/python3/dist-packages/powerline/bindings/vim/
-set laststatus=2
-set t_Co=256
+" Airline
+let g:airline_theme='deus'
+let g:airline_powerline_fonts = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""   EXTRA SYNTAX  """"""""""""""""""""""""""""""""""""
