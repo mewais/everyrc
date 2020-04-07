@@ -21,10 +21,15 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'majutsushi/tagbar'
 
 " Auto completion
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'roxma/nvim-yarp'
+Plugin 'ncm2/ncm2'
+Plugin 'ncm2/ncm2-path'
+Plugin 'ncm2/ncm2-bufword'
+Plugin 'ncm2/ncm2-pyclang'
+Plugin 'ncm2/ncm2-jedi'
 
 "Syntax Checking
-Plugin 'vim-syntastic/syntastic'
+Plugin 'neomake/neomake'
 
 " Git
 Plugin 'tpope/vim-fugitive'
@@ -37,6 +42,9 @@ Plugin 'gabrielelana/vim-markdown'
 " Airline
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+
+" Colorschemes
+Plugin 'drewtempelmeyer/palenight.vim'
 
 " end Vundle
 call vundle#end()
@@ -75,41 +83,25 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Close if NERDTree is last
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Recommended Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" Syntax Checking
+" When reading a buffer (after 1s), and when writing (no delay).
+call neomake#configure#automake('rw', 1000)
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-"YCM
-let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
+" Autocompletion
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
 
 " Open Tagbar
-autocmd VimEnter * TagbarToggle
+" autocmd VimEnter * TagbarToggle
 
 " Color
-colorscheme snazzy
+set background=dark
+colorscheme palenight
+let g:palenight_terminal_italics=1
 if (has("termguicolors"))
     set termguicolors
 endif
 
 " Airline
-let g:airline_theme='deus'
+let g:airline_theme='palenight'
 let g:airline_powerline_fonts = 1
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""   EXTRA SYNTAX  """"""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Enable LLVM IR and TD
-augroup filetype
-    au! BufRead,BufNewFile *.ll     set filetype=llvm
-augroup END
-
-augroup filetype
-    au! BufRead,BufNewFile *.td     set filetype=tablegen
-augroup END
