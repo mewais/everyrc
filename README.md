@@ -4,10 +4,16 @@ This repo includes a bunch of commands and a bunch of configuration files that I
 
 On a fresh Linux installation, run the following:
 ```bash
+sudo apt install apt-transport-https curl
+curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
+echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 sudo apt update
 sudo apt upgrade
-sudo apt install neovim python3 python3-dev build-essential git wget tmux npm cmake exuberant-ctags fonts-powerline python3-pip powerline
-sudo pip3 install psutil
+sudo apt install neovim python3 python3-dev build-essential git wget screen cmake exuberant-ctags fonts-powerline python3-pip powerline brave-browser
+sudo snap install clion --classic
+sudo snap install pycharm-professional --classic
+sudo snap install datagrip --classic
+sudo snap install mailspring --classic
 ```
 
 Then once we are settled, clone this repo.
@@ -21,17 +27,4 @@ git submodule update
 Run the following to completely setup vim
 ```bash
 nvim +PluginInstall +qall
-cd ~/.vim/bundle/YouCompleteMe && python3 install.py --clang-completer --java-completer --ts-completer && cd -
-```
-
-## VTOP
-Run the following to install vtop
-```bash
-sudo npm install -g vtop
-```
-
-## TMUX
-Run the following to get the color schemes for tmux
-```bash
-git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
 ```
