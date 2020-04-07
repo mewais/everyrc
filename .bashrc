@@ -194,7 +194,6 @@ esac
 ##################################################################################################
 ############################################ ALIASES #############################################
 ##################################################################################################
-alias vtop='vtop --theme wizard'
 alias vim='nvim'
 
 ##################################################################################################
@@ -214,27 +213,21 @@ export PINPATH=/work/mewais/pin
 export PATH=$PATH:$PINPATH
 
 ##################################################################################################
-############################################ ECLIPSE #############################################
-##################################################################################################
-export ECLIPSE_HOME=/media/mewais/Work/Softwares/Eclipse/eclipse
-export PATH=$ECLIPSE_HOME:$PATH
-
-##################################################################################################
 ############################################# MENTOR #############################################
 ##################################################################################################
-export MENTOR_HOME=/media/mewais/Work/Softwares/Mentor/
+export MENTOR_HOME=/work/mewais/programs/Mentor/
 export MODELSIM_HOME=$MENTOR_HOME/modelsim
 export CALIBRE_HOME=$MENTOR_HOME/calibre/ixl_cal_2011.2_34.26
 export MGLS_LICENSE_FILE=$MENTOR_HOME/license.dat
 
 export MGC_HOME=$CALIBRE_HOME
 export PATH=$MODELSIM_HOME/modeltech/bin:$CALIBRE_HOME/bin:$PATH
-alias vsim='LD_PRELOAD=/media/mewais/Work/Softwares/Mentor/modelsim/libfreetype.so.6.10.1 vsim'
+alias vsim='LD_PRELOAD=/work/mewais/programs/Mentor/modelsim/libfreetype.so.6.10.1 vsim'
 
 ##################################################################################################
 ############################################ SYNOPSYS ############################################
 ##################################################################################################
-export SYNOPSYS_HOME=/media/mewais/Work/Softwares/Synopsys/
+export SYNOPSYS_HOME=/work/mewais/programs/Synopsys/
 export DC_HOME=$SYNOPSYS_HOME/DC
 export CD_HOME=$SYNOPSYS_HOME/CD
 export CX_HOME=$SYNOPSYS_HOME/CX
@@ -250,22 +243,12 @@ export PATH=$CD_HOME/bin:$DC_HOME/bin:$CX_HOME/bin:$FM_HOME/bin:$HSPICE_HOME/hsp
 export PATH=$SCL_HOME/linux/bin/:$PATH
 
 ##################################################################################################
-############################################# ANDROID ############################################
+############################################## XILINX ############################################
 ##################################################################################################
-export ANDROID_HOME=/media/mewais/Work/Softwares/Android/android-studio/
-export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/
-export PATH=$ANDROID_HOME/bin/:$PATH
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/media/mewais/Work/Softwares/Google/google-cloud-sdk/path.bash.inc' ]; then source '/media/mewais/Work/Softwares/Google/google-cloud-sdk/path.bash.inc'; fi
-# The next line enables shell command completion for gcloud.
-if [ -f '/media/mewais/Work/Softwares/Google/google-cloud-sdk/completion.bash.inc' ]; then source '/media/mewais/Work/Softwares/Google/google-cloud-sdk/completion.bash.inc'; fi
+export XILINX_HOME=/work/mewais/programs/Xilinx/
+export VIVADO_HOME=$XILINX_HOME/Vivado/2018.3
 
-##################################################################################################
-############################################### TECH #############################################
-##################################################################################################
-export FREEPDK45="/work/mewais/TheECore/Tech/FreePDK45/"
-export OPENRAM_HOME="/work/mewais/TheECore/Third/OpenRAM/compiler"
-export OPENRAM_TECH="/work/mewais/TheECore/Third/OpenRAM/technology"
+export XILINXD_LICENSE_FILE=27012@mlm.ece.utoronto.ca:40012@mlm.ece.utoronto.ca
 
 ##################################################################################################
 ################################################ QT5 #############################################
