@@ -28,12 +28,18 @@ Plugin 'ncm2/ncm2-bufword'
 Plugin 'ncm2/ncm2-pyclang'
 Plugin 'ncm2/ncm2-jedi'
 
-"Syntax Checking
+" Syntax Checking
 Plugin 'neomake/neomake'
+
+" Code Style
+Plugin 'rhysd/vim-clang-format'
 
 " Git
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+
+" Doxygen
+Plugin 'DoxygenToolkit.vim'
 
 " Markdown
 Plugin 'godlygeek/tabular'
@@ -75,6 +81,12 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set noexpandtab
+
+" Doxygen
+let g:DoxygenToolkit_briefTag_pre="\\brief "
+let g:DoxygenToolkit_paramTag_pre="@param "
+let g:DoxygenToolkit_returnTag="@returns "
+let g:DoxygenToolkit_authorName="Mohammad Ewais"
 
 " Start NERDTree if no files
 autocmd StdinReadPre * let s:std_in=1
