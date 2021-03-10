@@ -14,6 +14,8 @@ sudo snap install clion --classic
 sudo snap install pycharm-professional --classic
 sudo snap install datagrip --classic
 sudo snap install mailspring --classic
+git clone https://github.com/ryanoasis/nerd-fonts.git && cd nerd-fonts/ && ./install.sh && cd - && rm -rf nerd-fonts/
+git clone https://github.com/petobens/trueline.git ~/.trueline/
 ```
 
 Then once we are settled, clone this repo.

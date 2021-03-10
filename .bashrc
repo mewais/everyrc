@@ -199,12 +199,54 @@ alias vim='nvim'
 ##################################################################################################
 ############################################## PS1 ###############################################
 ##################################################################################################
-export PYTHONPATH=$PYTHONPATH:~/.config/powerline/segments
-export XDG_CONFIG_DIRS=$XDG_CONFIG_DIRS:~/.config/
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-. /usr/share/powerline/bindings/bash/powerline.sh
+_trueline_user_segment() {
+    local fg_color="$1"
+    local bg_color="$2"
+    local font_style="$3"
+    local user="$USER"
+    local is_root="$(_trueline_is_root)"
+    if [[ -n "$is_root" ]]; then
+        if [[ -z "$user" ]]; then
+            user='root'
+        fi
+        fg_color=${TRUELINE_USER_ROOT_COLORS[0]}
+        bg_color=${TRUELINE_USER_ROOT_COLORS[1]}
+    fi
+    local has_ssh="$(_trueline_has_ssh)"
+    if [[ -n "$has_ssh" ]]; then 
+        user="${TRUELINE_SYMBOLS[ssh]} $user"
+    fi
+    local segment="$(_trueline_separator)"
+    segment+="$(_trueline_content "$fg_color" "$bg_color" "$font_style" " $user ")"
+    PS1+="$segment"
+    _last_color=$bg_color
+}
+
+_trueline_host_segment() {
+    local fg_color="$1"
+    local bg_color="$2"
+    local font_style="$3"
+	if [ "$TRUELINE_USER_SHOW_IP_SSH" = true ]; then
+		hostname="$(_trueline_ip_address)"
+	else
+		hostname="$HOSTNAME"
+	fi
+    local segment="$(_trueline_separator)"
+    segment+="$(_trueline_content "$fg_color" "$bg_color" "$font_style" " $hostname ")"
+    PS1+="$segment"
+    _last_color=$bg_color
+}
+
+TRUELINE_SEGMENTS=(
+	'user,black,light_blue,bold'
+	'host,black,purple,bold'
+	'working_dir,black,grey,normal'
+	'read_only,black,red,normal'
+	'git,black,green,bold'
+	'exit_status,black,red,normal'
+	'bg_jobs,black,orange,bold'
+)
+source ~/.trueline/trueline.sh
 
 ##################################################################################################
 ############################################## PIN ###############################################
