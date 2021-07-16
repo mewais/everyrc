@@ -52,6 +52,9 @@ Plugin 'vim-airline/vim-airline-themes'
 " Colorschemes
 Plugin 'drewtempelmeyer/palenight.vim'
 
+" CMake
+Plugin 'cdelledonne/vim-cmake'
+
 " end Vundle
 call vundle#end()
 filetype plugin indent on
@@ -80,7 +83,7 @@ set incsearch
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set noexpandtab
+set expandtab
 
 " Doxygen
 let g:DoxygenToolkit_briefTag_pre="\\brief "
@@ -88,9 +91,13 @@ let g:DoxygenToolkit_paramTag_pre="@param "
 let g:DoxygenToolkit_returnTag="@returns "
 let g:DoxygenToolkit_authorName="Mohammad Ewais"
 
+" Open Tagbar
+let g:tagbar_left = 1
+let g:tagbar_vertical = 25
+
 " Start NERDTree if no files
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | execute 'TagbarToggle' | endif
 
 " Close if NERDTree is last
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -100,11 +107,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 call neomake#configure#automake('rw', 1000)
 
 " Autocompletion
+let g:ncm2_pyclang#library_path = '/usr/lib/llvm-12/lib/'
+let g:ncm2_pyclang#database_path = [
+            \ 'compile_commands.json',
+            \ 'Debug/compile_commands.json',
+            \ 'Release/compile_commands.json'
+            \ ]
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
-
-" Open Tagbar
-" autocmd VimEnter * TagbarToggle
 
 " Color
 set background=dark
@@ -117,3 +127,6 @@ endif
 " Airline
 let g:airline_theme='palenight'
 let g:airline_powerline_fonts = 1
+
+" CMake
+let g:cmake_generate_options=['-DCMAKE_EXPORT_COMPILE_COMMANDS=ON']
