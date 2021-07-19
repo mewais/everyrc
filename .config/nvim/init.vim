@@ -16,6 +16,7 @@ Plugin 'VundleVim/Vundle.vim'
 " NERDTree
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'ryanoasis/vim-devicons'
 
 " Class explorer (tags)
 Plugin 'majutsushi/tagbar'
@@ -51,9 +52,13 @@ Plugin 'vim-airline/vim-airline-themes'
 
 " Colorschemes
 Plugin 'drewtempelmeyer/palenight.vim'
+Plugin 'kaicataldo/material.vim'
 
 " CMake
 Plugin 'cdelledonne/vim-cmake'
+
+" GDB
+Plugin 'cpiger/NeoDebug'
 
 " end Vundle
 call vundle#end()
@@ -118,14 +123,21 @@ set completeopt=noinsert,menuone,noselect
 
 " Color
 set background=dark
-colorscheme palenight
-let g:palenight_terminal_italics=1
+" colorscheme palenight
+" let g:palenight_terminal_italics=1
+let g:material_terminal_italics=1
+let g:material_theme_style = 'palenight'
+colorscheme material
+if (has('nvim'))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+endif
 if (has("termguicolors"))
     set termguicolors
 endif
 
 " Airline
-let g:airline_theme='palenight'
+" let g:airline_theme='palenight'
+let g:airline_theme='material'
 let g:airline_powerline_fonts = 1
 
 " CMake
