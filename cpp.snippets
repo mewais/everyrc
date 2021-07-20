@@ -1,0 +1,277 @@
+##############################################################################################
+###################################### Header Convenience ####################################
+##############################################################################################
+
+snippet apl "Academic Public License" b
+// ${1:`!p import os; snip.rv = os.getcwd().split('/')[-1]`} (c) by Mohammad Ewais
+//
+// $1 is licensed under the Academic Public License.
+//
+// You should have received a copy of the license along with this
+// work. If not, see <https://omnetpp.org/intro/license>.
+
+$0
+endsnippet
+
+
+snippet once "Header Guard" b
+#ifndef _${1:`!p import os; snip.rv = os.getcwd().split('/')[-1].upper()`}_${2:`!p snip.rv = path[:-len(fn)-1].split('/')[-1].upper()`}_${3:`!p snip.rv = snip.basename.upper()`}_HPP_
+#define _$1_$2_$3_HPP_
+
+$0
+
+#endif // _$1_$2_$3_HPP_
+endsnippet
+
+
+snippet ns "Namespace" b
+namespace ${1:`!p snip.rv = path[:-len(fn)-1].split('/')[-1].upper()`}::${2:`!p snip.rv = snip.basename.upper()`}
+{
+	$0
+}
+endsnippet
+
+
+snippet cl "Class" b
+class ${1:`!p snip.rv = snip.basename`}
+{
+	private:
+		$0
+	public:
+		$1();
+};
+endsnippet
+
+
+snippet icl "Inheriting class" b
+class ${1:`!p snip.rv = snip.basename`} : public ${2:ParentName}
+{
+	private:
+		$0
+	public:
+		$1();
+};
+endsnippet
+
+
+snippet fd "Function declaration" b
+${1:void} ${2:FunctionName}($3);
+endsnippet
+
+##############################################################################################
+######################################### Entire Header ######################################
+##############################################################################################
+snippet h "Header file skeleton" b
+// ${1:`!p import os; snip.rv = os.getcwd().split('/')[-1]`} (c) by Mohammad Ewais
+//
+// $1 is licensed under the Academic Public License.
+//
+// You should have received a copy of the license along with this
+// work. If not, see <https://omnetpp.org/intro/license>.
+
+#ifndef _$1_${2:`!p snip.rv = path[:-len(fn)-1].split('/')[-1].upper()`}_${3:`!p snip.rv = snip.basename.upper()`}_HPP_
+#define _$1_$2_$3_HPP_
+
+namespace $2::$3
+{
+	$0
+}
+
+#endif // _$1_$2_$3_HPP_
+endsnippet
+
+snippet ch "Class header file skeleton" b
+// ${1:`!p import os; snip.rv = os.getcwd().split('/')[-1]`} (c) by Mohammad Ewais
+//
+// $1 is licensed under the Academic Public License.
+//
+// You should have received a copy of the license along with this
+// work. If not, see <https://omnetpp.org/intro/license>.
+
+#ifndef _${2:`!p import os; snip.rv = os.getcwd().split('/')[-1].upper()`}_${3:`!p snip.rv = path[:-len(fn)-1].split('/')[-1].upper()`}_${4:`!p snip.rv = snip.basename.upper()`}_HPP_
+#define _$2_$3_$4_HPP_
+
+namespace $3::$4
+{
+	class ${5:`!p snip.rv = snip.basename`}
+	{
+		private:
+			$0
+		public:
+			$5();
+	};
+}
+
+#endif // _$2_$3_$4_HPP_
+endsnippet
+
+##############################################################################################
+###################################### Source Convenience ####################################
+##############################################################################################
+snippet inc "Related include" b
+#include "${1:`!p snip.rv = path[len("Headers/"):-3] + ".hpp"`}"
+endsnippet
+
+
+snippet f "Function" b
+${1:void} ${2:FunctionName}($3);
+{
+	$0
+}
+endsnippet
+
+
+snippet cf "Class Function" b
+${1:void} ${2:`!p snip.rv = snip.basename`}::${3:FunctionName}($4);
+{
+	$0
+}
+endsnippet
+
+
+snippet for "For loop" b
+for (${1:uint32_t} ${2:i} = 0; $2 < $3; ${4:++$2})
+{
+	$0
+}
+endsnippet
+
+
+snippet fore "For loop of elements" b
+for (${1:const} auto& ${2:ElementName}: ${3:ContainerName})
+{
+	$0
+}
+endsnippet
+
+
+snippet fori "For loop of iterators" b
+for (auto& ${1:it} = ${2:ContainerName}.begin(); $1 != $2.end(); ++$1)
+{
+	$0
+}
+endsnippet
+
+
+snippet forri "For loop of reverse iterators" b
+for (auto& ${1:it} = ${2:ContainerName}.rbegin(); $1 != $2.rend(); ++$1)
+{
+	$0
+}
+endsnippet
+
+
+snippet if "If statement" b
+if (${1:Condition})
+{
+	$0;
+}
+endsnippet
+
+
+snippet eif "Else if statement" b
+else if (${1:Condition})
+{
+	$0;
+}
+endsnippet
+
+
+snippet el "Else statement" b
+else
+{
+	$0;
+}
+endsnippet
+
+
+snippet wh "While statement" b
+while (${1:Condition})
+{
+	$0;
+}
+endsnippet
+
+
+snippet sw "Switch statement" b
+switch (${1:Condition})
+{
+	case ${2:Case}:
+		$0
+		break;
+	default:
+		break;
+}
+endsnippet
+
+
+snippet cs "Case statement" b
+case ${1:Case}:
+	$0
+	break;
+endsnippet
+
+
+snippet main "Main function" b
+int main(int argc, char** argv)
+{
+	$0
+	return 0;
+}
+endsnippet
+
+
+##############################################################################################
+######################################### Entire Source ######################################
+##############################################################################################
+snippet s "Source file skeleton" b
+// ${1:`!p import os; snip.rv = os.getcwd().split('/')[-1]`} (c) by Mohammad Ewais
+//
+// $1 is licensed under the Academic Public License.
+//
+// You should have received a copy of the license along with this
+// work. If not, see <https://omnetpp.org/intro/license>.
+
+#include "${2:`!p snip.rv = path[len("Headers/"):-3] + ".hpp"`}"
+
+namespace ${3:`!p snip.rv = path[:-len(fn)-1].split('/')[-1].upper()`}::${4:`!p snip.rv = snip.basename.upper()`}
+{
+	$0
+}
+endsnippet
+
+
+snippet ms "Main source file skeleton" b
+// ${1:`!p import os; snip.rv = os.getcwd().split('/')[-1]`} (c) by Mohammad Ewais
+//
+// $1 is licensed under the Academic Public License.
+//
+// You should have received a copy of the license along with this
+// work. If not, see <https://omnetpp.org/intro/license>.
+
+#include <string>
+#include <map>
+#include <docopt/docopt.h>
+
+const std::string docopt_usage =
+R"($1
+${2:Description of program}
+
+	Usage:
+		$1 (-h | --help)
+		$2
+
+	Options:
+		-h --help                   Show this help message.
+		$3
+)";
+
+int main(int argc, char** argv)
+{
+	std::map<std::string, docopt::value> args = docopt::docopt(docopt_usage, {argv + 1, argv + argc}, true, "$1 ${4:Version}");
+
+	$0
+
+	return 0;
+}
+endsnippet
