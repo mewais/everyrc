@@ -69,15 +69,15 @@ snippet h "Header file skeleton" b
 // You should have received a copy of the license along with this
 // work. If not, see <https://omnetpp.org/intro/license>.
 
-#ifndef _$1_${2:`!p snip.rv = path[:-len(fn)-1].split('/')[-1].upper()`}_${3:`!p snip.rv = snip.basename.upper()`}_HPP_
-#define _$1_$2_$3_HPP_
+#ifndef _${2:`!p import os; snip.rv = os.getcwd().split('/')[-1].upper()`}_${3:`!p snip.rv = path[:-len(fn)-1].split('/')[-1].upper()`}_${4:`!p snip.rv = snip.basename.upper()`}_HPP_
+#define _$2_$3_$4_HPP_
 
-namespace $2::$3
+namespace $3::$4
 {
 	$0
 }
 
-#endif // _$1_$2_$3_HPP_
+#endif // _$2_$3_$4_HPP_
 endsnippet
 
 snippet ch "Class header file skeleton" b
@@ -109,7 +109,7 @@ endsnippet
 ###################################### Source Convenience ####################################
 ##############################################################################################
 snippet inc "Related include" b
-#include "${1:`!p snip.rv = path[len("Headers/"):-3] + ".hpp"`}"
+#include "${1:`!p snip.rv = path[len("Headers/"):-3] + "hpp"`}"
 endsnippet
 
 
@@ -232,7 +232,7 @@ snippet s "Source file skeleton" b
 // You should have received a copy of the license along with this
 // work. If not, see <https://omnetpp.org/intro/license>.
 
-#include "${2:`!p snip.rv = path[len("Headers/"):-3] + ".hpp"`}"
+#include "${2:`!p snip.rv = path[len("Headers/"):-3] + "hpp"`}"
 
 namespace ${3:`!p snip.rv = path[:-len(fn)-1].split('/')[-1].upper()`}::${4:`!p snip.rv = snip.basename.upper()`}
 {
@@ -259,16 +259,16 @@ ${2:Description of program}
 
 	Usage:
 		$1 (-h | --help)
-		$2
+		$3
 
 	Options:
 		-h --help                   Show this help message.
-		$3
+		$4
 )";
 
 int main(int argc, char** argv)
 {
-	std::map<std::string, docopt::value> args = docopt::docopt(docopt_usage, {argv + 1, argv + argc}, true, "$1 ${4:Version}");
+	std::map<std::string, docopt::value> args = docopt::docopt(docopt_usage, {argv + 1, argv + argc}, true, "$1 ${5:Version}");
 
 	$0
 
