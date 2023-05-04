@@ -21,14 +21,25 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=5000
+SAVEHIST=5000
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+
 # vim
 alias vim='nvim'
 
 # Better ls, cat, and less
+alias bat='batcat --theme=Argonaut'
 command -v lsd > /dev/null && alias ls='lsd --group-dirs first'
 command -v lsd > /dev/null && alias tree='lsd --tree'
 command -v bashtop > /dev/null && alias top='bashtop'
-alias bat='batcat --theme=Argonaut'
 command -v bat > /dev/null && alias cat='bat --pager=never -p'
 command -v bat > /dev/null && alias less='bat'
 
