@@ -1,0 +1,75 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Alias colors
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias diff='diff --color=auto'
+
+# Man page colors
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+
+# vim
+alias vim='nvim'
+
+# Better ls, cat, and less
+command -v lsd > /dev/null && alias ls='lsd --group-dirs first'
+command -v lsd > /dev/null && alias tree='lsd --tree'
+command -v bashtop > /dev/null && alias top='bashtop'
+alias bat='batcat --theme=Argonaut'
+command -v bat > /dev/null && alias cat='bat --pager=never -p'
+command -v bat > /dev/null && alias less='bat'
+
+# Powerline
+source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Nice gitlog
+glog() {
+    setterm -linewrap off
+
+    git --no-pager log --all --color=always --graph --abbrev-commit --decorate \
+        --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' | \
+        sed -E \
+            -e 's/\|(\x1b\[[0-9;]*m)+\\(\x1b\[[0-9;]*m)+ /├\1─╮\2/' \
+            -e 's/(\x1b\[[0-9;]+m)\|\x1b\[m\1\/\x1b\[m /\1├─╯\x1b\[m/' \
+            -e 's/\|(\x1b\[[0-9;]*m)+\\(\x1b\[[0-9;]*m)+/├\1╮\2/' \
+            -e 's/(\x1b\[[0-9;]+m)\|\x1b\[m\1\/\x1b\[m/\1├╯\x1b\[m/' \
+            -e 's/╮(\x1b\[[0-9;]*m)+\\/╮\1╰╮/' \
+            -e 's/╯(\x1b\[[0-9;]*m)+\//╯\1╭╯/' \
+            -e 's/(\||\\)\x1b\[m   (\x1b\[[0-9;]*m)/╰╮\2/' \
+            -e 's/(\x1b\[[0-9;]*m)\\/\1╮/g' \
+            -e 's/(\x1b\[[0-9;]*m)\//\1╯/g' \
+            -e 's/^\*|(\x1b\[m )\*/\1⎬/g' \
+            -e 's/(\x1b\[[0-9;]*m)\|/\1│/g' \
+        | command less -r +'/[^/]HEAD'
+
+    setterm -linewrap on
+}
+
+# Tools and Licenses
+export DYNAMORIO_PATH=/work/mewais/projects/DCArch/DynamoRIO/
+export VIVADO_PATH=/work/mewais/programs/Xilinx/Vivado/2022.2/
+export MODELSIM_PATH=/work/mewais/programs/Mentor/modelsim.10.7c
+
+export PATH=$VIVADO_PATH/bin:$MODELSIM_PATH/modeltech/bin:$PATH
+export XILINXD_LICENSE_FILE=27012@localhost:40012@localhost
+export MGLS_LICENSE_FILE=7056@localhost:6056@localhost
+
+alias vivado_license='ssh -f -L 27012:mlm.ece.utoronto.ca:27012 -L 40012:mlm.ece.utoronto.ca:40012 agent31 sleep 100000000'
+alias modelsim_license='ssh -f -L 7056:cadpserver.ece.utoronto.ca:7056 -L 6056:cadpserver.ece.utoronto.ca:6056 -L 17056:cadpserver.ece.utoronto.ca:17056 -L 16056:cadpserver.ece.utoronto.ca:16056 seth.eecg.utoronto.ca sleep 100000000'

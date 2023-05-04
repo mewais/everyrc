@@ -1,3 +1,7 @@
+Host niagara
+    Hostname niagara.scinet.utoronto.ca
+    User mewais
+
 Host anubis
 	Hostname anubis.eecg.utoronto.ca
 	User mewais
@@ -13,10 +17,3 @@ Host bastet
 Host seth
 	Hostname seth.eecg.utoronto.ca
 	User mewais
-
-Host mnode
-	Hostname 128.100.241.193
-	ForwardX11 yes
-	User mewais
-	Port 4422
-	ProxyCommand ssh anubis nc %h %p

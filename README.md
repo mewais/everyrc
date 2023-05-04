@@ -4,29 +4,16 @@ This repo includes a bunch of commands and a bunch of configuration files that I
 
 On a fresh Linux installation, run the following:
 ```bash
-sudo apt install apt-transport-https curl
-curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
-echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-sudo apt update
-sudo apt upgrade
-sudo apt install neovim python3 python3-dev build-essential git wget screen cmake exuberant-ctags fonts-powerline python3-pip powerline brave-browser
-sudo snap install clion --classic
-sudo snap install pycharm-professional --classic
-sudo snap install datagrip --classic
-sudo snap install mailspring --classic
-git clone https://github.com/ryanoasis/nerd-fonts.git && cd nerd-fonts/ && ./install.sh && cd - && rm -rf nerd-fonts/
-git clone https://github.com/petobens/trueline.git ~/.trueline/
+sudo apt install git
+git clone https://gitlab.com/mewais/everyrc
+cd everyrc
+./setup.sh
 ```
-
-Then once we are settled, clone this repo.
-```bash
-git clone https://gitlab.com/mewais/everyrc .
-git submodule init
-git submodule update
-```
+This is an interactive script that will ask you for some inputs as well as the sudo password. It will install everythin needed and setup zsh, neovim, and my ssh config.
 
 ## VIM
 Run the following to completely setup vim
 ```bash
-nvim +PluginInstall +qall
+:PackerInstall
+:COQdeps
 ```
