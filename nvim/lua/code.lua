@@ -57,6 +57,9 @@ require('cmake-tools').setup {
 
 -- Git
 require('vgit').setup()
+vim.g['lazygit_floating_window_winblend'] = 0.8
+vim.g['lazygit_floating_window_scaling_factor'] = 0.9
+vim.g['lazygit_floating_window_use_plenary'] = 1
 
 -- Markdown
 require('glow').setup({

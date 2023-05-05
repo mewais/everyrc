@@ -46,6 +46,7 @@ return require('packer').startup(function()
 
     -- Git
     use 'tanvirtin/vgit.nvim'
+    use 'kdheepak/lazygit.nvim'
 
     -- Markdown
     use 'ellisonleao/glow.nvim'
